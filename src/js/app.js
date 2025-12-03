@@ -359,6 +359,9 @@
         let orderedStars = stars.sort(starSorter);
 
         for (let star of orderedStars) {
+            if (star.dayNr > daysOfPuzzles) {
+                continue;
+            }
             const basePoints = availablePoints[star.dayKey][star.starKey]--;
             star.points = adjustPoinstFor(year, star.dayKey, star.starKey, basePoints);
             star.rank = n_members - basePoints + 1;
@@ -374,7 +377,10 @@
         }
 
         /** @type {number} */
-        let maxDay = Math.max.apply(Math, stars.filter(s => s.starNr === 2).map(s => s.dayNr))
+        let maxDay = Math.min(
+          Math.max.apply(Math, stars.filter(s => s.starNr === 2).map(s => s.dayNr)),
+          daysOfPuzzles
+        );
         
         /** @type {IDaysMap} */
         let days = {};
