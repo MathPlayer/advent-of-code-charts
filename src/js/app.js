@@ -248,7 +248,7 @@
         let /** @type {IStar[]} */ stars = [];
         let /** @type {IDelta[]} */ deltas = [];
         let year = parseInt(json.event);
-        let daysOfPuzzles = (year === 2025) ? 12 : 25;
+        let daysOfPuzzles = (year >= 2025) ? 12 : 25;
         let loggedInUserIsPresumablyKnown = false;
         
         let n_members = Object.keys(json.members).length;
